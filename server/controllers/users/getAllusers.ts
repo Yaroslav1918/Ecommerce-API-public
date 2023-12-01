@@ -10,7 +10,7 @@ export async function getAllUsers(
 ) {
   try {
     const users = await UsersService.findAll();
-    res.status(200).json({ users });
+    res.status(200).json(users);
   } catch (error) {
     next(ApiError.resourceNotFound("User not found"));
   }

@@ -29,6 +29,7 @@ describe("User controller", () => {
     name: "test",
     email: "test@mail.com",
     password: "123456",
+    avatar: "zxdgfdsv"
   };
 
   it("Should create a new user", async () => {
@@ -40,7 +41,7 @@ describe("User controller", () => {
     expect(response.body).toMatchObject({ user: user });
     expect(response.body.user).toEqual({
       _id: expect.any(String),
-      roleId: expect.any(String),
+      role: expect.any(String),
       ...user,
     });
     expect(response.status).toBe(201);

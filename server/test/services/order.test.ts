@@ -14,6 +14,7 @@ export async function createOrder() {
     name: "Alan",
     email: "alan@gmail.com",
     password: "1234567",
+    avatar: "dfvdsgvds"
   };
 
   const category = new CategoryRepo({
@@ -25,7 +26,7 @@ export async function createOrder() {
     name: "iphone",
     description: "super phone",
     price: 123,
-    categoryId: category._id.toString(),
+    category: category._id.toString(),
     images: ["fdfgdf"],
     stock: 12,
   });

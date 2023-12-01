@@ -25,7 +25,7 @@ describe("Product service", () => {
       name: "iphone",
       description: "super phone",
       price: 123,
-      categoryId: category._id.toString(),
+      category: category._id.toString(),
       images: ["fdfgdf"],
       stock: 12,
     });
@@ -33,14 +33,14 @@ describe("Product service", () => {
       name: "nokia mobile",
       description: "nokia description",
       price: 300,
-      categoryId: category._id,
+      category: category._id,
       images: ["fdfgdf"],
     });
     const sonyProduct = new ProductRepo({
       name: "sony mobile",
       description: "sony description",
       price: 200,
-      categoryId: category._id,
+      category: category._id,
       images: ["fdfgdf"],
       stock: 10,
     });
@@ -65,7 +65,7 @@ describe("Product service", () => {
       name: "mobile",
       description: "super phone",
       price: 123,
-      categoryId: category._id.toString(),
+      category: category._id.toString(),
       images: ["fdfgdf"],
       stock: 42,
     };

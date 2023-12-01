@@ -34,35 +34,34 @@ async function deleteUser(index: string) {
   return deletedUser;
 }
 
-async function signUp(
-  name: string,
-  email: string,
-  password: string,
-  roleId: string
-) {
+async function signUp(userInfo: CreateUserInput) {
+  const { name, email, role, avatar, password } = userInfo;
+  console.log("🚀 ~ file: usersService.ts:39 ~ signUp ~ avatar:", avatar)
   const hashedPassword = bcrypt.hashSync(password, 10);
-  const user = new UserRepo({ name, email, roleId, password: hashedPassword });
+  const user = new UserRepo({
+    name,
+    email,
+    role,
+    avatar,
+    password: hashedPassword,
+  });
   await user.save();
-  const foundRole = await RoleRepo.findById({ _id: user.roleId });
+  const foundRole = await RoleRepo.findById({ _id: user.role });
   if (!foundRole) {
     return null;
   }
-  const newUser = { name, email, roleId: foundRole.name };
+  const newUser = { name, email, avatar, role: foundRole.name };
   return newUser;
 }
 
 async function logIn(email: string, password: string) {
   const foundUser = await UserRepo.findOne({ email: email });
-
   if (!foundUser || !foundUser.password) {
     return null;
   }
   const isValid = bcrypt.compareSync(password, foundUser.password);
-  if (!isValid) {
-    return null;
-  }
-  const foundRole = await RoleRepo.findById({ _id: foundUser.roleId });
-  if (!foundRole) {
+  const foundRole = await RoleRepo.findById({ _id: foundUser.role });
+  if (!foundRole || !isValid) {
     return null;
   }
   const payload = {
@@ -74,21 +73,29 @@ async function logIn(email: string, password: string) {
   const accessToken = jwt.sign(payload, process.env.TOKEN_SECRET as string, {
     expiresIn: "1h",
   });
-
-  return accessToken;
+  const user = {
+    _id: foundUser._id,
+    name: foundUser.name,
+    role: foundRole.name,
+    email: foundUser.name,
+    avatar: foundUser.avatar,
+  };
+  return { accessToken, user };
 }
 
-async function googleLogin(user: User) {
-  const foundRole = await RoleRepo.findById({ _id: user.roleId });
-  if (user && foundRole) {
+async function googleLogin(userInfo: User) {
+  const foundRole = await RoleRepo.findById({ _id: userInfo.role });
+  if (userInfo && foundRole) {
     const payload = {
-      email: user.email,
+      email: userInfo.email,
       role: foundRole.name,
     };
     const accessToken = jwt.sign(payload, process.env.TOKEN_SECRET as string, {
       expiresIn: "1h",
     });
-    return accessToken;
+    const user = JSON.parse(JSON.stringify(userInfo));
+    user.role = foundRole.name;
+    return { accessToken, user };
   }
   return null;
 }

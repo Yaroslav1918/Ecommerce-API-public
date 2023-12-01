@@ -12,7 +12,7 @@ export const productBodySchema = z
     price: z.number({
       required_error: "Price is required",
     }),
-    categoryId: z
+    category: z
       .string()
       .refine((val) => mongoose.Types.ObjectId.isValid(val)),
     images: z.array(

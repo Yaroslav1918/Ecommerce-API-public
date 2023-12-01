@@ -26,7 +26,7 @@ describe("Product controller", () => {
       name: "nokia",
       description: "nokia description",
       price: 300,
-      categoryId: category._id.toString(),
+      category: category._id.toString(),
       images: ["fdfgdf"],
       stock: 12,
     });
@@ -49,7 +49,7 @@ describe("Product controller", () => {
       name: "nokia",
       description: "nokia description",
       price: 300,
-      categoryId: category._id.toString(),
+      category: category._id.toString(),
       images: ["fdfgdf"],
       stock: 12,
     };

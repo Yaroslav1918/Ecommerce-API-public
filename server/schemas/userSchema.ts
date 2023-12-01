@@ -20,16 +20,24 @@ export const userBodySchema = z.object({
     .max(20, {
         message: "Must be at most 20 characters long"
     }),
-    roleId: z.string().refine((val) => mongoose.Types.ObjectId.isValid(val)).optional(),
+    avatar: z.string(),
+    role: z.string().refine((val) => mongoose.Types.ObjectId.isValid(val)).optional(),
 })
 .strict();
 
-export const updatedUserBodySchema = z.object({
-        name: z.string().optional(),
-        email: z.string().email().optional(),
-        password: z.string().min(6).max(20).optional(),
-        roleId: z.string().refine((val) => mongoose.Types.ObjectId.isValid(val)).optional(),
-}).partial().strict();
+export const updatedUserBodySchema = z
+  .object({
+    name: z.string().optional(),
+    avatar: z.string().optional(),
+    email: z.string().email().optional(),
+    password: z.string().min(6).max(20).optional(),
+    role: z
+      .string()
+      .refine((val) => mongoose.Types.ObjectId.isValid(val))
+      .optional(),
+  })
+  .partial()
+  .strict();
 
 export const userSchema = z.object({
     body: userBodySchema,

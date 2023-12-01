@@ -15,7 +15,10 @@ const UserSchema = new Schema(
     password: {
       type: String,
     },
-    roleId: {
+    avatar: {
+      type: String,
+    },
+    role: {
       type: Schema.Types.ObjectId,
       default: "6554c883ab8e8fbcc83c643a",
       ref: "Role",

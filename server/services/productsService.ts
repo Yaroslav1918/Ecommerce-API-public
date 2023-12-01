@@ -11,7 +11,7 @@ import { ProductQueries } from "../types/ProductQueries";
 
 const createOne = async (newProduct: CreateProductInput) => {
   const category: Category | null = await CategoryRepo.findOne({
-    _id: newProduct.categoryId,
+    _id: newProduct.category,
   });
   if (!category) {
     return null;
@@ -21,7 +21,7 @@ const createOne = async (newProduct: CreateProductInput) => {
 };
 
 const findAll = async () => {
-  return await ProductRepo.find().exec();
+  return await ProductRepo.find().populate("category").exec();
 };
 
 const removeOne = async (productId: string) => {

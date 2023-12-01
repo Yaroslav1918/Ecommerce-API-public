@@ -23,6 +23,7 @@ describe("user service", () => {
     name: "test",
     email: "test@mail.com",
     password: "123456",
+    avatar: "sdfsd"
   };
 
   it("Should create a new user", async () => {

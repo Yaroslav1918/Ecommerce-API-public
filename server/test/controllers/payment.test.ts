@@ -21,7 +21,7 @@ async function createOrderWithPayment() {
     name: "iphone",
     description: "super phone",
     price: 123,
-    categoryId: category._id.toString(),
+    category: category._id.toString(),
     images: ["fdfgdf"],
     stock: 12,
   });
@@ -31,6 +31,7 @@ async function createOrderWithPayment() {
     name: "Sirko",
     email: "te112@gmail.com",
     password: "1234567",
+    avatar: "dfgdfdsfd"
   };
   const user = await UserService.createUser(bodyUser);
 
@@ -100,7 +101,6 @@ describe("Payment controller", () => {
       orderId: bodyPayment?.ordersId[0],
     });
     await newPayment.save();
-    console.log("-----------------", newPayment._id);
     const response = await request(app)
       .delete(`/payments/${newPayment._id}`)
       .set("Authorization", `Bearer ${accessToken}`);

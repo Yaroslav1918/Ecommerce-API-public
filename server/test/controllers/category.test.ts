@@ -33,7 +33,7 @@ describe("Categories Controller", () => {
     const response = await request(app)
       .post("/categories")
       .send(category)
-      .set("Authorization", `Bearer ${accessToken}`);
+      .set("Authorization", `Bearer ${accessToken}`);;
     expect(response.body.newCategory).toHaveProperty("name");
     expect(response.body).toMatchObject({ newCategory: category });
     expect(response.body.message).toBe("Category successfully created");

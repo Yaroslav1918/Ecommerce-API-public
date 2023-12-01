@@ -8,8 +8,8 @@ export type Product = z.infer<typeof productBodySchema> & {
 export type UpdateProductInput = Partial<Product>;
 export type CreateProductInput = Omit<Product, "_id">;
 interface ProductDto
-  extends Omit<z.infer<typeof productBodySchema>, "categoryId" | "stock"> {}
+  extends Omit<z.infer<typeof productBodySchema>, "category" | "stock"> {}
 export interface ProductDocument extends mongoose.Document, ProductDto {
-  categoryId: mongoose.Types.ObjectId;
+  category: mongoose.Types.ObjectId;
   stock?: number | null | undefined;
 }

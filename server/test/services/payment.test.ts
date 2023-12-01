@@ -27,7 +27,7 @@ describe("Payment service", () => {
       name: "iphone",
       description: "super phone",
       price: 123,
-      categoryId: category._id.toString(),
+      category: category._id.toString(),
       images: ["fdfgdf"],
       stock: 12,
     });
@@ -36,6 +36,7 @@ describe("Payment service", () => {
       name: "Sirko",
       email: "te112@gmail.com",
       password: "1234567",
+      avatar: "sdfdsds"
     };
     const user = await UserService.createUser(bodyUser);
     const bodyOrder: newOrderData = {
