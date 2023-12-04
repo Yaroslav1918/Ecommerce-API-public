@@ -16,14 +16,12 @@ usersRouter.get(
   "/",
   checkAuth,
   checkRoles(ROLE.ADMIN),
-  checkPermission("READ"),
   usersController.getAllUsers
 );
 usersRouter.get(
   "/:userId",
   checkAuth,
   checkRoles(ROLE.ADMIN),
-  checkPermission("READ"),
   usersController.getSingleUser
 );
 usersRouter.post(
@@ -32,7 +30,6 @@ usersRouter.post(
   emailChecker,
   checkAuth,
   checkRoles(ROLE.ADMIN),
-  checkPermission("CREATE"),
   usersController.createUser
 );
 usersRouter.put(
@@ -41,14 +38,12 @@ usersRouter.put(
   emailChecker,
   checkAuth,
   checkRoles(ROLE.ADMIN),
-  checkPermission("UPDATE"),
   usersController.updateUser
 );
 usersRouter.delete(
   "/:userId",
   checkAuth,
   checkRoles(ROLE.ADMIN),
-  checkPermission("DELETE"),
   usersController.deleteUser
 );
 usersRouter.post("/signup", emailChecker, usersController.signUp);

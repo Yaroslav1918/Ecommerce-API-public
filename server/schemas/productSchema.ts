@@ -20,9 +20,7 @@ export const productBodySchema = z
         required_error: "Images are required",
       })
     ),
-    stock: z.number({
-      required_error: "Price is required",
-    }),
+    
   })
   .strict();
 

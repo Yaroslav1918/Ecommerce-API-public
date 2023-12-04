@@ -13,9 +13,5 @@ export async function getAllCategories(
     next(ApiError.resourceNotFound("Categories data not found"));
     return;
   }
-  if (categories.length <= 0) {
-    res.status(200).json({msg: "No categories data yet"})
-    return
-  }
   res.status(200).json(categories);
 }

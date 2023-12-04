@@ -9,6 +9,7 @@ import usersRouter from "./routes/usersRouter";
 import checkoutRouter from "./routes/checkoutRouter";
 import orderItemsRouter from "./routes/orderItemsRouter";
 import paymentsRouter from "./routes/paymentsRouter";
+import rolesRouter from "./routes/roleRouter"
 import { loggingMiddleware } from "./middlewares/logging";
 import { apiErrorHandler } from "./middlewares/apiErrorHandler";
 import { routeNotFound } from "./middlewares/routeNotFound";
@@ -30,6 +31,7 @@ app.use("/users", loggingMiddleware, usersRouter);
 app.use("/checkout", loggingMiddleware, checkoutRouter);
 app.use("/items", loggingMiddleware, orderItemsRouter);
 app.use("/payments", loggingMiddleware, paymentsRouter);
+app.use("/roles", loggingMiddleware, rolesRouter);
 
 app.use(apiErrorHandler);
 app.use(routeNotFound);

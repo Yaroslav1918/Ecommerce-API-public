@@ -12,7 +12,7 @@ export async function updateUser(
   const updatedUser = req.body;
   const user = await usersService.updateUser(id, updatedUser);
   if (!user) {
-    next(new ApiError(404, "User not found"));
+    next(ApiError.resourceNotFound("User not found"));
     return;
   }
   res.status(200).json({ user, message: "User updated" });
