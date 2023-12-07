@@ -8,7 +8,6 @@ import { checkAuth } from "../middlewares/checkAuth";
 import { checkRoles } from "../middlewares/checkRoles";
 import { ROLE } from "../utils/role";
 import passport from "passport";
-import { checkPermission } from "../middlewares/checkPermissions";
 
 const usersRouter = express.Router();
 

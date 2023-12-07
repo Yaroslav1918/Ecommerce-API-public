@@ -25,7 +25,7 @@ export const authWithGoogle = () => {
         }
         return done(null, user);
       } catch (error) {
-        return done(ApiError.forbidden("google authentication failed"));
+        return done(ApiError.Unauthorized("google authentication failed"));
       }
     }
   );

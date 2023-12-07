@@ -8,9 +8,9 @@ export async function logIn(req: Request, res: Response, next: NextFunction) {
     next(ApiError.forbidden("Please log in via Google."));
     return;
   }
-    const loggedInUser = await usersService.logIn(email, password);
-  if (loggedInUser === null) {
-    next(ApiError.forbidden("Email or password is invalid"));
+  const loggedInUser = await usersService.logIn(email, password);
+  if (!loggedInUser.status && loggedInUser.message) {
+    next(ApiError.badRequest(loggedInUser.message));
     return;
   }
   const { accessToken, user } = loggedInUser;

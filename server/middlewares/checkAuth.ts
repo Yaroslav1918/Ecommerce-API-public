@@ -10,7 +10,7 @@ export function checkAuth(
 ) {
   const token = req.headers.authorization?.split(" ")[1];
   if (!token) {
-    next(ApiError.forbidden("Token is not found"));
+    next(ApiError.Unauthorized("Token is not found"));
     return;
   }
   const decoded = jwt.verify(

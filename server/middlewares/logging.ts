@@ -16,7 +16,6 @@ export const monitorRequest = (
   isReturn?: boolean
 ) => {
   requestCount++;
-  if (true) {
     res.on("finish", () => {
       switch (Math.floor(res.statusCode)) {
         case 200:
@@ -52,7 +51,6 @@ export const monitorRequest = (
         value > 0 && console.log(`Code: ${key}: requests: ${value}`);
       }
     });
-  }
   if (isReturn) {
     return;
   } else {

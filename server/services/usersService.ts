@@ -73,40 +73,39 @@ async function signUp(userInfo: CreateUserInput) {
   });
   await user.save();
   const foundRole = await RoleRepo.findById({ _id: user.role });
-  if (!foundRole) {
-    return null;
-  }
-  const newUser = { name, email, avatar, role: foundRole.name };
+  const newUser = { name, email, avatar, role: foundRole?.name };
   return newUser;
 }
 
-async function logIn(email: string, password: string) {
-  const foundUser = await UserRepo.findOne({ email: email });
-  if (!foundUser || !foundUser.password) {
-    return null;
+async function logIn(loginEmail: string, loginPassword: string) {
+  const foundUser = await UserRepo.findOne({ email: loginEmail });
+  if (
+    !foundUser ||
+    !foundUser.password ||
+    !bcrypt.compareSync(loginPassword, foundUser.password)
+  ) {
+    return {
+      message: !foundUser ? "Email is not found" : "Password is not valid",
+      status: false,
+    };
   }
-  const isValid = bcrypt.compareSync(password, foundUser.password);
-  const foundRole = await RoleRepo.findById({ _id: foundUser.role });
-  console.log(foundRole?.permissions);
-  if (!foundRole || !isValid) {
-    return null;
-  }
+  const { avatar, name, _id, email, role } = foundUser.toObject();
+  const foundRole = await RoleRepo.findById({ _id: role });
   const payload = {
-    userId: foundUser._id,
-    email: foundUser.email,
-    role: foundRole.name,
-    permissions: foundRole.permissions,
+    userId: _id,
+    email,
+    role: foundRole?.name,
+    permissions: foundRole?.permissions,
   };
-
   const accessToken = jwt.sign(payload, process.env.TOKEN_SECRET as string, {
     expiresIn: "1h",
   });
   const user = {
-    _id: foundUser._id,
-    name: foundUser.name,
-    role: foundRole.name,
-    email: foundUser.email,
-    avatar: foundUser.avatar,
+    _id,
+    name,
+    role: foundRole?.name,
+    email,
+    avatar,
   };
   return { accessToken, user };
 }
