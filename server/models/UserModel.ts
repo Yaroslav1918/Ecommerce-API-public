@@ -15,6 +15,9 @@ const UserSchema = new Schema(
     password: {
       type: String,
     },
+    isGoogleLoggedIn: {
+      type: Boolean,
+    },
     avatar: {
       type: String,
     },

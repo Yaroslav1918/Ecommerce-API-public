@@ -21,6 +21,7 @@ export const userBodySchema = z.object({
         message: "Must be at most 20 characters long"
     }),
     avatar: z.string(),
+    isGoogleLoggedIn:z.boolean(),
     role: z.string().refine((val) => mongoose.Types.ObjectId.isValid(val)).optional(),
 })
 .strict();

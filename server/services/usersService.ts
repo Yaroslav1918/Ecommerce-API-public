@@ -105,7 +105,7 @@ async function logIn(email: string, password: string) {
     _id: foundUser._id,
     name: foundUser.name,
     role: foundRole.name,
-    email: foundUser.name,
+    email: foundUser.email,
     avatar: foundUser.avatar,
   };
   return { accessToken, user };

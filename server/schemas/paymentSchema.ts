@@ -1,24 +1,23 @@
 import mongoose from "mongoose";
 import { z } from "zod";
-import { shipmentBodySchema } from "./shipmentSchema";
-
 export const paymentBodySchema = z
   .object({
-    userId: z.string().refine((val) => mongoose.Types.ObjectId.isValid(val)),
-    method: z.enum(["credit_card", "bank_transfer", "paypal"]),
-    ordersId: z.array(
-      z.string().refine((val) => mongoose.Types.ObjectId.isValid(val))
+    cart: z.array(
+      z.object({
+        _id: z.string().refine((val) => mongoose.Types.ObjectId.isValid(val)),
+        name: z.string(),
+        description: z.string(),
+        price: z.number(),
+        category: z.object({
+          _id: z.string().refine((val) => mongoose.Types.ObjectId.isValid(val)),
+          name: z.string(),
+          images: z.array(z.string()),
+        }),
+      })
     ),
-    bankName: z.string({
-      required_error: "BankName  is required",
-    }),
-    accountNumber: z.string({
-      required_error: "AccountNumber  is required",
-    }),
-    shipmentInfo: shipmentBodySchema,
+    userId: z.string().refine((val) => mongoose.Types.ObjectId.isValid(val)),
   })
   .strict();
-
 
 export const paymentSchema = z.object({
   body: paymentBodySchema,

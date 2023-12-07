@@ -6,7 +6,6 @@ import { categorySchema, uptadeCategorySchema } from "../schemas/categorySchema"
 import { checkAuth } from "../middlewares/checkAuth";
 import { ROLE } from "../utils/role";
 import { checkRoles } from "../middlewares/checkRoles";
-import { checkPermission } from "../middlewares/checkPermissions";
 
 const categoriesRouter = express.Router();
 

@@ -43,8 +43,7 @@ const updateOne = async (
 };
 
 const findOne = async (productId: string) => {
-  const product = await ProductRepo.findById(productId);
-  return product;
+  return await ProductRepo.findById(productId).populate("category").exec();
 };
 
 const queryHandling = async (queries: ProductQueries) => {

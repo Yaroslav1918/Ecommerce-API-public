@@ -1,6 +1,5 @@
 import GoogleTokenStrategy from "passport-google-id-token";
 
-import RoleRepo from "../models/RoleModel";
 import { ApiError } from "./errors/ApiError";
 import UserRepo from "../models/UserModel";
 
@@ -18,9 +17,11 @@ export const authWithGoogle = () => {
             name,
             email,
             avatar: picture,
+            isGoogleLoggedIn: true
           });
           await newUser.save();
           user = newUser;
+   
         }
         return done(null, user);
       } catch (error) {

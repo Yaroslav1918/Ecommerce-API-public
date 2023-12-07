@@ -1,12 +1,11 @@
 import express from "express";
 
 import ctrl from "../controllers/payments";
-import { validate } from "../middlewares/validate";
-import { paymentSchema } from "../schemas/paymentSchema";
 import { checkAuth } from "../middlewares/checkAuth";
 import { checkRoles } from "../middlewares/checkRoles";
 import { ROLE } from "../utils/role";
-import { checkPermission } from "../middlewares/checkPermissions";
+import { paymentSchema } from "../schemas/paymentSchema";
+import { validate } from "../middlewares/validate";
 
 const router = express.Router();
 router.get(
@@ -15,12 +14,11 @@ router.get(
   checkRoles(ROLE.ADMIN, ROLE.USER),
   ctrl.getAllPayments
 );
-router.post(
-  "/",
-  validate(paymentSchema),
+router.get(
+  "/:userId",
   checkAuth,
   checkRoles(ROLE.ADMIN, ROLE.USER),
-  ctrl.addPayment
+  ctrl.getAllPaymentsByUserID
 );
 router.get(
   "/:paymentId",
@@ -28,6 +26,19 @@ router.get(
   checkRoles(ROLE.ADMIN, ROLE.USER),
   ctrl.getPayment
 );
+router.post(
+  "/create-checkout-session",
+  validate(paymentSchema),
+  checkAuth,
+  checkRoles(ROLE.ADMIN, ROLE.USER),
+  ctrl.stripePayment
+);
+router.post(
+  "/webhook",
+  express.json({ type: "application/json" }),
+  ctrl.webhook
+);
+
 router.delete("/:paymentId", checkAuth, ctrl.removePayment);
 
 export default router;

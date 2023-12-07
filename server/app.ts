@@ -4,10 +4,7 @@ import cors from "cors";
 
 import productsRouter from "./routes/productsRouter";
 import categoriesRouter from "./routes/categoriesRouter";
-import ordersRouter from "./routes/ordersRouter";
 import usersRouter from "./routes/usersRouter";
-import checkoutRouter from "./routes/checkoutRouter";
-import orderItemsRouter from "./routes/orderItemsRouter";
 import paymentsRouter from "./routes/paymentsRouter";
 import rolesRouter from "./routes/roleRouter"
 import { loggingMiddleware } from "./middlewares/logging";
@@ -26,10 +23,7 @@ passport.use(authWithGoogle());
 
 app.use("/products", loggingMiddleware, productsRouter);
 app.use("/categories", loggingMiddleware, categoriesRouter);
-app.use("/orders", loggingMiddleware, ordersRouter);
 app.use("/users", loggingMiddleware, usersRouter);
-app.use("/checkout", loggingMiddleware, checkoutRouter);
-app.use("/items", loggingMiddleware, orderItemsRouter);
 app.use("/payments", loggingMiddleware, paymentsRouter);
 app.use("/roles", loggingMiddleware, rolesRouter);
 
