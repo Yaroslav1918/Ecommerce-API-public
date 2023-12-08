@@ -15,7 +15,6 @@ export const paymentBodySchema = z
         }),
       })
     ),
-    userId: z.string().refine((val) => mongoose.Types.ObjectId.isValid(val)),
   })
   .strict();
 

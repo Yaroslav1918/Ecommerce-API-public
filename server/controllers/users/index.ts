@@ -6,6 +6,8 @@ import { getAllUsers } from "./getAllusers";
 import { signUp } from "./signUp";
 import { logIn } from "./logIn";
 import { googleLogIn } from "./googleLogIn";
+import { verifyPassword } from "./verifyPassword";
+import { changePassword } from "./changePassword";
 
 export default {
   createUser,
@@ -16,4 +18,6 @@ export default {
   signUp,
   logIn,
   googleLogIn,
+  verifyPassword,
+  changePassword,
 };

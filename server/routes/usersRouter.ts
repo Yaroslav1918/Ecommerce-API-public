@@ -31,6 +31,18 @@ usersRouter.post(
   checkRoles(ROLE.ADMIN),
   usersController.createUser
 );
+usersRouter.post(
+  "/verify-password",
+  checkAuth,
+  checkRoles(ROLE.ADMIN, ROLE.USER),
+  usersController.verifyPassword          
+);
+usersRouter.post(
+  "/change-password",
+  checkAuth,
+  checkRoles(ROLE.ADMIN, ROLE.USER),
+  usersController.changePassword          
+);
 usersRouter.put(
   "/:userId",
   validate(updateUserSchema),

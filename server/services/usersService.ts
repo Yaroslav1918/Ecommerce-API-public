@@ -81,11 +81,16 @@ async function logIn(loginEmail: string, loginPassword: string) {
   const foundUser = await UserRepo.findOne({ email: loginEmail });
   if (
     !foundUser ||
+    foundUser.isGoogleLoggedIn ||
     !foundUser.password ||
     !bcrypt.compareSync(loginPassword, foundUser.password)
   ) {
     return {
-      message: !foundUser ? "Email is not found" : "Password is not valid",
+      message: !foundUser
+        ? "Email is not found"
+        : foundUser.isGoogleLoggedIn
+        ? "Please log in via Google."
+        : "Password is not valid",
       status: false,
     };
   }
@@ -129,6 +134,31 @@ async function googleLogin(userInfo: User) {
   return null;
 }
 
+async function verifyPassword(password: string, userId: string) {
+  const foundUser = await UserRepo.findOne({ _id: userId });
+  if (!foundUser || !foundUser?.password) {
+    return null;
+  }
+  return bcrypt.compareSync(password, foundUser.password);
+}
+
+async function updatePassword(newPassword: string, userId: string) {
+  const foundUser = await UserRepo.findOne({ _id: userId });
+  const hashedPassword = bcrypt.hashSync(newPassword, 10);
+  if (!foundUser || !foundUser?.password) {
+    return {
+      message: !foundUser ? "User is not found" : "Password is not found",
+      status: false,
+    };
+  }
+  foundUser.password = hashedPassword;
+  await foundUser.save();
+  return {
+    message: "Password is successfully changed",
+    status: true,
+  };
+}
+
 export default {
   findAll,
   getSingleUser,
@@ -138,4 +168,6 @@ export default {
   signUp,
   logIn,
   googleLogin,
+  verifyPassword,
+  updatePassword,
 };
