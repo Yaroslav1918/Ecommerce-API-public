@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from "express";
 
-import { ApiError } from "../../middlewares/errors/ApiError";
 import usersService from "../../services/usersService";
 
 export async function verifyPassword(

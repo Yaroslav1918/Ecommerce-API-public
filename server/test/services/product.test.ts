@@ -5,7 +5,6 @@ import CategoryRepo from "../../models/CategoryModel";
 import connect, { MongoHelper } from "../db-helper";
 import { ProductQueries } from "ProductQueries";
 import { Category } from "Category";
-import mongoose from "mongoose";
 
 describe("Product service", () => {
   let mongoHelper: MongoHelper;
@@ -67,7 +66,6 @@ describe("Product service", () => {
       price: 123,
       category: category._id.toString(),
       images: ["fdfgdf"],
-      stock: 42,
     };
     const newProduct = await ProductService.createOne(product);
     expect(newProduct).toHaveProperty("_id");

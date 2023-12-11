@@ -4,18 +4,20 @@ import jwt from "jsonwebtoken";
 import UserRepo from "../models/UserModel";
 import RoleRepo from "../models/RoleModel";
 import { CreateUserInput, User, UserUpdate } from "../types/User";
-import { RoleName } from "../utils/role";
 
 async function findAll() {
   const users = await UserRepo.find().populate("role", "name").exec();
-  return users.map((user) => {
-    const modifiedUser = user.toObject();
-    delete modifiedUser.password;
-    return {
-      ...modifiedUser,
-      role: (user.role as unknown as RoleName).name,
-    };
-  });
+  return Promise.all(
+    users.map(async (user) => {
+      const modifiedUser = user.toObject();
+      const roleName = await RoleRepo.findById(user.role);
+      delete modifiedUser.password;
+      return {
+        ...modifiedUser,
+        role: roleName?.name, 
+      };
+    })
+  );
 }
 
 async function getSingleUser(index: string) {
@@ -73,7 +75,7 @@ async function signUp(userInfo: CreateUserInput) {
   });
   await user.save();
   const foundRole = await RoleRepo.findById({ _id: user.role });
-  const newUser = { name, email, avatar, role: foundRole?.name };
+  const newUser = { _id: user._id, name, email, avatar, role: foundRole?.name };
   return newUser;
 }
 

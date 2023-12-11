@@ -50,8 +50,7 @@ describe("Product controller", () => {
       description: "nokia description",
       price: 300,
       category: category._id.toString(),
-      images: ["fdfgdf"],
-      stock: 12,
+      images: ["fdfgdf"]
     };
     const response = await request(app)
       .post("/products")
