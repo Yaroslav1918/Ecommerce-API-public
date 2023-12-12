@@ -4,20 +4,12 @@ Within this assignment the REST API for an e-commerce website is implemented acc
 
 ## Contents
 
-- [Team](#team)
 - [Technologies](#technologies)
 - [Getting Started](#getting-started)
 - [ER Diagram](#er-diagram)
 - [Project Features](#project-features)
 - [Project Structure](#project-structure)
 - [Testing](#testing)
-
-## Team
-
-- Shtanko Yaroslav
-- Md Shayemur Rahman
-- Amjad Shakhshir
-- Alexey Sytnikov
 
 ## Technologies
 
@@ -28,15 +20,15 @@ Within this assignment the REST API for an e-commerce website is implemented acc
 
 ## Getting started
 
-- Clone the project `git clone https://github.com/sytnikov/fs16-backend-public.git`;
+- Clone the project `git clone https://github.com/Yaroslav1918/Ecommerce-API`;
 - Create your `.env` file using `.env.example` file as an exaple and fill it with your credentials;
 - Use `npm install` to install all dependencies and necessary packages;
 - Run the server using `npm run sever`.
 
 ## ER Diagram
 
-Within the project, the following entities are covered: users, products, categories, orders, roles, payments, and shipments.
-![er-diagram](Database-ER-diagram.png)
+Within the project, the following entities are covered: users, products, categories, roles, payments.
+![er-diagram](Database ER diagram.png)
 
 ## Project Features
 
@@ -47,18 +39,39 @@ Based on the specifications provided in the ERD assignment the basic CRUD (Creat
 ### Authentication and authorization
 
 For security resons, certain endpoint are protected with the following middleware:
-
+- authWithGoogle: verifying  user via google token
 - checkAuth: verifying is a user is logged in. There are two ways of authentication implemented: using JWT and brokered authentication with Google;
 - checkRole: verifying if a user is a customer or and admin;
 - checkPermissions: verifying if an admin has a particular access
 
-### Response Format
+### Payment
+This project includes a Stripe test payment system. For testing payments, the test card is 4242 4242 4242 4242.
 
+### Env
+This project includes the following env variables:
+1. DB_URL_COMMON - Mongo Db cluster url 
+2. TOKEN_SECRET - It's a secret key used to sign and verify tokens, ensuring their authenticity and integrity
+3. GOOGLE_CLIENT_ID - This is a unique identifier assigned to your application when you register it with the Google API Console 
+4. STRIPE_KEY - This is a unique identifier assigned to your application when you register it with Stripe
+5. CLIENT_URL = front end url
+
+
+### Main routes
+baseUrl"/products"
+baseUrl"/categories"
+baseUrl"/users"
+baseUrl"/payments"
+baseUrl"/roles"
+
+### Response Format
 All API responses are provided in JSON format which includes a `status`, `data`, and an optional `message` field.
 
 ### Error Handling
+To handle API errors, the apiErrorHandler, routeNotFound are implemented.
 
-To handle API errors, the apiErrorHandler is implemented.
+### Validation
+1. The `emailChecker` checks if the user's email is unique.
+2. The `validate` middleware uses a Zod schema to ensure that products, categories, and users are valid.
 
 ## Project Structure
 

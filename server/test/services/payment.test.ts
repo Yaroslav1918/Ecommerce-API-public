@@ -25,7 +25,6 @@ describe("payment service", () => {
         name: "phone",
         price: 123,
         quantity: 222,
-        images: ["sdfds"]
       },
     ];
     const result = await PaymentService.createPaymentSession(userId, cart);
@@ -37,7 +36,6 @@ describe("payment service", () => {
         name: "phone",
         price: 123,
         quantity: 222,
-        images: "sdfds",
       },
     ]);
   });

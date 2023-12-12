@@ -8,7 +8,7 @@ export const authWithGoogle = () => {
     {
       clientID: process.env.GOOGLE_CLIENT_ID as string,
     },
-    async function (parsedToken, googleId, done) {
+    async function (parsedToken, _, done) {
       const { email, name, picture } = parsedToken.payload;
       try {
         let user = await UserRepo.findOne({ email });
@@ -17,11 +17,10 @@ export const authWithGoogle = () => {
             name,
             email,
             avatar: picture,
-            isGoogleLoggedIn: true
+            isGoogleLoggedIn: true,
           });
           await newUser.save();
           user = newUser;
-   
         }
         return done(null, user);
       } catch (error) {

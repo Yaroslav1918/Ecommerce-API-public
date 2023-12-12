@@ -50,7 +50,7 @@ export const createPaymentSession = async (
   const simplifiedCart = cart.map((item) => ({
     _id: item._id,
     name: item.name,
-    images:item.images[0],
+
     price: item.price,
     quantity: item.quantity,
   }));
@@ -67,7 +67,6 @@ export const createPaymentSession = async (
       currency: "usd",
       product_data: {
         name: item.name,
-        images: [item.images[0]],
         metadata: {
           id: item._id,
         },
