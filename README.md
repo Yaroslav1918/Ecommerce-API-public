@@ -23,7 +23,7 @@ Within this assignment the REST API for an e-commerce website is implemented acc
 - Clone the project `git clone https://github.com/Yaroslav1918/Ecommerce-API`;
 - Create your `.env` file using `.env.example` file as an exaple and fill it with your credentials;
 - Use `npm install` to install all dependencies and necessary packages;
-- Run the server using `npm run sever`.
+- Run the server using `npm run start`.
 
 ## ER Diagram
 
