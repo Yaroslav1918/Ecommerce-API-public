@@ -105,3 +105,6 @@ Below is the high-level project folder structure represented.
 The test cases for all the key Services and Controllers have been built with Jest testing library. In this porject, unit testing and integration testing approaches were used. The test requests are sent to the built mock server, not the real API.
 
 Run `npm run test` to implement all the tests.
+
+# Back-end Project
+[Project Link](https://ecommerce-api-3946fddfdbf1.herokuapp.com/)
