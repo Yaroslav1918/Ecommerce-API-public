@@ -1,4 +1,4 @@
-import { CreateProductInput, Product, ProductDocument } from "Product";
+import { CreateProductInput, ProductDocument } from "Product";
 import ProductService from "../../services/productsService";
 import ProductRepo from "../../models/ProductModel";
 import CategoryRepo from "../../models/CategoryModel";

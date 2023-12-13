@@ -1,4 +1,5 @@
 import express from "express";
+import passport from "passport";
 
 import usersController from "../controllers/users";
 import { validate } from "../middlewares/validate";
@@ -7,7 +8,7 @@ import { emailChecker } from "../middlewares/emailChecker";
 import { checkAuth } from "../middlewares/checkAuth";
 import { checkRoles } from "../middlewares/checkRoles";
 import { ROLE } from "../utils/role";
-import passport from "passport";
+
 
 const usersRouter = express.Router();
 

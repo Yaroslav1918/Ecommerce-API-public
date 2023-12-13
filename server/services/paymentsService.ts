@@ -1,4 +1,4 @@
-import stripe, { Stripe } from "stripe";
+import stripe from "stripe";
 
 import PaymentRepo from "../models/StripeOrderModel";
 import { Metadata, CartItem } from "../types/Stripe";
@@ -40,7 +40,8 @@ const createStripePayments = async (customer: any, data: any) => {
     payment_status: data.payment_status,
     date: new Date().toLocaleString(),
   });
-  newOrder.save();
+  await newOrder.save();
+  return newOrder;
 };
 
 export const createPaymentSession = async (
@@ -50,7 +51,6 @@ export const createPaymentSession = async (
   const simplifiedCart = cart.map((item) => ({
     _id: item._id,
     name: item.name,
-
     price: item.price,
     quantity: item.quantity,
   }));
