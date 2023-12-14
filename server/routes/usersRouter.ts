@@ -21,7 +21,7 @@ usersRouter.get(
 usersRouter.get(
   "/:userId",
   checkAuth,
-  checkRoles(ROLE.ADMIN),
+  checkRoles(ROLE.ADMIN, ROLE.USER),
   usersController.getSingleUser
 );
 usersRouter.post(

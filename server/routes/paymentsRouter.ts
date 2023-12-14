@@ -39,11 +39,6 @@ router.post(
   ctrl.webhook
 );
 
-router.delete(
-  "/:paymentId",
-  checkAuth,
-  checkRoles(ROLE.ADMIN),
-  ctrl.removePayment
-);
+
 
 export default router;

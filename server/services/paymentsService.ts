@@ -5,10 +5,6 @@ import { Metadata, CartItem } from "../types/Stripe";
 
 export const stripeInstance = new stripe(process.env.STRIPE_KEY as string);
 
-const removeOne = async (paymentId: string) => {
-  return await PaymentRepo.findByIdAndDelete(paymentId);
-};
-
 const findOne = async (paymentId: string) => {
   return await PaymentRepo.findById(paymentId);
 };
@@ -137,7 +133,6 @@ export const createPaymentSession = async (
 };
 
 export default {
-  removeOne,
   findOne,
   findAll,
   createStripePayments,

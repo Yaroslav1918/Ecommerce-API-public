@@ -90,16 +90,6 @@ describe("payment service", () => {
     expect(result.payment_status).toBe("succeeded");
   });
 
-  test("should delete  payment", async () => {
-    const newPayment = await PaymentService.createStripePayments(
-      customer,
-      data
-    );
-    await PaymentService.removeOne(newPayment._id.toString());
-    const allPayments = await PaymentService.findAll();
-    expect(allPayments.length).toBe(0);
-  });
-
   test("should return all payments", async () => {
     await PaymentService.createStripePayments(customer, data);
     const result = await PaymentService.findAll();
