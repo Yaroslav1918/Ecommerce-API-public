@@ -73,10 +73,6 @@ To handle API errors, the apiErrorHandler, routeNotFound are implemented.
 1. The `emailChecker` checks if the user's email is unique.
 2. The `validate` middleware uses a Zod schema to ensure that products, categories, and users are valid.
 
-### Additional information
-Log in as a admin; credentials:
-mail: te2423@gmail.com
-password: 12345
 
 ## Project Structure
 Below is the high-level project folder structure represented.
