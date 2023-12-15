@@ -1,7 +1,7 @@
 import { z } from "zod";
+import mongoose from "mongoose";
 
 import { userBodySchema } from "../schemas/userSchema";
-import mongoose from "mongoose";
 
 export type User = z.infer<typeof userBodySchema> & {
   _id: mongoose.Types.ObjectId;

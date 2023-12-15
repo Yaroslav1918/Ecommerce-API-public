@@ -47,5 +47,4 @@ describe("Payments Controller", () => {
       .set("Authorization", `Bearer ${accessToken}`);
     expect(response.body).toHaveProperty("url");
   });
-
 });

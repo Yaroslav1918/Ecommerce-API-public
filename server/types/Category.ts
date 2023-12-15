@@ -1,6 +1,7 @@
 import { z } from "zod";
-import { categoryBodySchema } from "../schemas/categorySchema";
 import mongoose from "mongoose";
+
+import { categoryBodySchema } from "../schemas/categorySchema";
 
 export type CategoryDto = z.infer<typeof categoryBodySchema>
 export type Category = CategoryDto & {_id: mongoose.Types.ObjectId}

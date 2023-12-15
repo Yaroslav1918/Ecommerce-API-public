@@ -1,9 +1,7 @@
 import mongoose from "mongoose";
 import CategoryRepo from "../models/CategoryModel";
-import {
-  CreateCategoryInput,
-  UpdateCategoryInput,
-} from "../types/Category";
+
+import { CreateCategoryInput, UpdateCategoryInput } from "../types/Category";
 
 async function getAll() {
   return await CategoryRepo.find().exec();

@@ -1,5 +1,6 @@
 import { z } from "zod";
 import mongoose from "mongoose";
+
 import { productBodySchema } from "../schemas/productSchema";
 
 export type Product = z.infer<typeof productBodySchema> & {

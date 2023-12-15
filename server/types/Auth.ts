@@ -1,7 +1,7 @@
 import { JwtPayload } from "jsonwebtoken";
 import { Request } from "express";
-import { Role } from "../utils/role";
 
+import { Role } from "../utils/role";
 
 export interface DecodedUser extends JwtPayload {
   userId: string;

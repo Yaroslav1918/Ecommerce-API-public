@@ -1,5 +1,6 @@
 import supertest from "supertest";
-import express, { Request, Response, NextFunction } from "express";
+import express from "express";
+
 import { routeNotFound } from "../../middlewares/routeNotFound";
 
 const app = express();

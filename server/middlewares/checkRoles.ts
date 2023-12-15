@@ -1,4 +1,5 @@
 import { NextFunction, Response } from "express";
+
 import { WithAuthRequest } from "../types/Auth";
 import { Role } from "../utils/role";
 import { ApiError } from "./errors/ApiError";

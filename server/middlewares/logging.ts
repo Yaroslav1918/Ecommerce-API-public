@@ -9,6 +9,7 @@ export const statusCodes = {
   "409": 0,
   "500": 0,
 };
+
 export const monitorRequest = (
   req: Request,
   res: Response,

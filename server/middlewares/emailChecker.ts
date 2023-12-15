@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from "express";
+
 import UserRepo from "../models/UserModel";
 
 export async function emailChecker(

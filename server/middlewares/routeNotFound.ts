@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from "express";
+
 import { monitorRequest } from "./logging";
 
 export function routeNotFound(req: Request, res: Response, next: NextFunction) {

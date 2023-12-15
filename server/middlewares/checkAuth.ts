@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
-import { NextFunction, Request, Response } from "express";
+import { NextFunction, Response } from "express";
+
 import { DecodedUser, WithAuthRequest } from "../types/Auth";
 import { ApiError } from "./errors/ApiError";
 

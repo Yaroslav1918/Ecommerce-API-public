@@ -100,7 +100,6 @@ describe("Product service", () => {
   });
 
   it("shouldn't delete when the id is invalid", async () => {
-    // invalid id
     await ProductService.removeOne("655ddd33a14052a8b4e508f4");
     const products = await ProductService.findAll();
     expect(products.length).toEqual(3);
