@@ -33,5 +33,6 @@ jobs:
         echo "CLIENT_URL=${{ secrets.CLIENT_URL }}" >> .env
     - name: Integration test
       run: npm test
-
+    - name: Build
+      run: npm run build
     
