@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+
 import CategoryRepo from "../models/CategoryModel";
 
 import { CreateCategoryInput, UpdateCategoryInput } from "../types/Category";
