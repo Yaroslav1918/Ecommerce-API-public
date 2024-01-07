@@ -24,10 +24,6 @@ jobs:
     - name: Install dependencies
       run: npm install --frozen-lockfile
 
-    - name: Integration test
-      run: npm test
-    - name: Build
-      run: npm run build
     - name: Compose production .env file
       run: |
         echo "DB_URL_COMMON=${{ secrets.DB_URL_COMMON }}" >> .env
@@ -36,4 +32,8 @@ jobs:
         echo "TOKEN_SECRET=${{ secrets.TOKEN_SECRET }}" >> .env
         echo "STRIPE_KEY=${{ secrets.STRIPE_KEY }}" >> .env
         echo "CLIENT_URL=${{ secrets.CLIENT_URL }}" >> .env
+    - name: Integration test
+      run: npm test
+    - name: Build
+      run: npm run build
     
