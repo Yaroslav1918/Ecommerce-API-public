@@ -29,7 +29,6 @@ jobs:
         echo "DB_URL_COMMON=${{ secrets.DB_URL_COMMON }}" >> .env
         echo "TOKEN_SECRET=${{ secrets.TOKEN_SECRET }}" >> .env
         echo "GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }}" >> .env
-        echo "TOKEN_SECRET=${{ secrets.TOKEN_SECRET }}" >> .env
         echo "STRIPE_KEY=${{ secrets.STRIPE_KEY }}" >> .env
         echo "CLIENT_URL=${{ secrets.CLIENT_URL }}" >> .env
     - name: Integration test
