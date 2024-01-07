@@ -7,12 +7,6 @@ jobs:
  build:
   name: Build
   runs-on: ubuntu-latest
-  env:
-    DB_URL_COMMON: ${{ secrets.DB_URL_COMMON }}
-    TOKEN_SECRET: ${{ secrets.TOKEN_SECRET }}
-    GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
-    STRIPE_KEY: ${{ secrets.STRIPE_KEY }}
-    CLIENT_URL: ${{ secrets.CLIENT_URL }}
   steps:
     - name: Setup Node.js environment
       uses: actions/setup-node@v4
@@ -34,4 +28,12 @@ jobs:
       run: npm test
     - name: Build
       run: npm run build
+    - name: Compose production .env file
+      run: |
+        echo "DB_URL_COMMON=${{ secrets.DB_URL_COMMON }}" >> .env
+        echo "TOKEN_SECRET=${{ secrets.TOKEN_SECRET }}" >> .env
+        echo "GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }}" >> .env
+        echo "TOKEN_SECRET=${{ secrets.TOKEN_SECRET }}" >> .env
+        echo "STRIPE_KEY=${{ secrets.STRIPE_KEY }}" >> .env
+        echo "CLIENT_URL=${{ secrets.CLIENT_URL }}" >> .env
     
